@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
 describe("Step 1", () => {
@@ -21,6 +21,26 @@ describe("Step 1", () => {
         test("includes price", () => {
             render(<App />)
             expect(screen.getByTestId(id)).toHaveTextContent(price)
+        })
+    })
+})
+
+
+describe("Step 2", () => {
+    const table = [
+        ["coffee-count", "coffee"],
+        ["tea-count", "tea"],
+        ["milk-count", "milk"],
+        ["coke-count", "coke"],
+        ["beer-count", "beer"],
+    ]
+    describe.each(table)("counter %s", (id, buttonId) => {
+        test(`links to only the '${buttonId}' button`, () => {
+            render(<App />)
+            fireEvent.click(screen.getByTestId(buttonId))
+            expect(screen.getByTestId(id)).toHaveTextContent("1")
+            const otherCounterNumbers = table.map(v => screen.getByTestId(v[0]).innerText)
+            expect(1).not.toContain(otherCounterNumbers)
         })
     })
 })
