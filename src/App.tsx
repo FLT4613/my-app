@@ -11,6 +11,12 @@ function App () {
 
     return (
         <div className="App">
+            <span data-testid="count">{
+                coffeeCount + teaCount + milkCount + coke + beerCount
+            }</span>
+            <span data-testid="price">{
+                coffeeCount * 480 + teaCount * 280 + milkCount * 180 + coke * 190 + beerCount * 580
+            }</span>
             <div data-testid={`coffee-count`}>{coffeeCount}</div>
             <div data-testid={`tea-count`}>{teaCount}</div>
             <div data-testid={`milk-count`}>{milkCount}</div>
