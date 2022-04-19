@@ -42,5 +42,9 @@ describe("Step 2", () => {
             const otherCounterNumbers = table.map(v => screen.getByTestId(v[0]).innerText)
             expect(1).not.toContain(otherCounterNumbers)
         })
+        test("display '0' after initialization", () => {
+            render(<App />)
+            expect(screen.getByTestId(id)).toHaveTextContent("0")
+        })
     })
 })

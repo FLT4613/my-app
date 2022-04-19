@@ -1,21 +1,18 @@
 
-import React, { useCallback, useState } from "react"
+import React, { useCallback } from "react"
 import PurchaseButton from "./PurchaseButton"
 
 type Props = {
     id: string;
     name: string;
     price: number;
+    count: number;
+    setCount?: (x: number) => void;
 }
 
 const Counter: React.FC<Props> = (props) => {
-    const [count, setCount] = useState(0)
-    const onClick = useCallback(() => setCount(count + 1), [count])
-
-    return <>
-        <PurchaseButton {...props} onClick={onClick} />
-        <div data-testid={`${props.id}-count`}>{count}</div>
-    </>
+    const onClick = useCallback(() => props.setCount && props.setCount(props.count + 1), [props])
+    return <PurchaseButton {...props} onClick={onClick} />
 }
 
 export default Counter

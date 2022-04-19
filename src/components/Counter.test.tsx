@@ -2,21 +2,15 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Counter from './Counter'
 
-test("has a button and a display", () => {
-    render(<Counter id="coffee" name="コーヒー" price={180} />)
-    expect(screen.getByTestId("coffee")).toBeTruthy()
-    expect(screen.getByTestId("coffee-count")).toBeTruthy()
-})
 
-test("display '0' after initialization", () => {
-    render(<Counter id="coffee" name="コーヒー" price={180} />)
-    expect(screen.getByTestId("coffee-count")).toHaveTextContent("0")
-})
 
-test("count up when the button is pressed", async () => {
-    render(<Counter id="coffee" name="コーヒー" price={180} />)
-    fireEvent.click(screen.getByTestId("coffee"))
-    expect(screen.getByTestId("coffee-count")).toHaveTextContent("1")
-    fireEvent.click(screen.getByTestId("coffee"))
-    expect(screen.getByTestId("coffee-count")).toHaveTextContent("2")
+describe("count up by 1 when the button is pressed", () => {
+    test.each(
+        [[0, 1], [1, 2]]
+    )("%d -> %d", (before, after) => {
+        const setCount = jest.fn()
+        render(<Counter id="coffee" name="コーヒー" price={180} count={before} setCount={setCount} />)
+        fireEvent.click(screen.getByTestId("coffee"))
+        expect(setCount).toHaveBeenCalledWith(after)
+    })
 })
