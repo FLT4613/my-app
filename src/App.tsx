@@ -52,10 +52,10 @@ function App () {
             <span data-testid="count">{totalItemsCount}</span>
             <span data-testid="price">{totalPrice}</span>
             {
-                items.map(v => <React.Fragment key={v.id}>
-                    <div data-testid={`${v.id}-count`}>{itemsCount[v.id]}</div>
+                items.map(v => <div className="flex" key={v.id}>
                     <Counter id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />
-                </React.Fragment>)
+                    <div className="w-6 h-6 text-center rounded-full bg-red-500 text-white " data-testid={`${v.id}-count`}>{itemsCount[v.id]}</div>
+                </div>)
             }
         </div>
     );
