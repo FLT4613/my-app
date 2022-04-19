@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import Counter from './components/Counter';
 
@@ -51,16 +51,12 @@ function App () {
         <div className="App">
             <span data-testid="count">{totalItemsCount}</span>
             <span data-testid="price">{totalPrice}</span>
-            <div data-testid={`coffee-count`}>{itemsCount["coffee"]}</div>
-            <div data-testid={`tea-count`}>{itemsCount["tea"]}</div>
-            <div data-testid={`milk-count`}>{itemsCount["milk"]}</div>
-            <div data-testid={`coke-count`}>{itemsCount["coke"]}</div>
-            <div data-testid={`beer-count`}>{itemsCount["beer"]}</div>
-
             {
-                items.map(v => <Counter id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />)
+                items.map(v => <>
+                    <div data-testid={`${v.id}-count`}>{itemsCount[v.id]}</div>
+                    <Counter id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />
+                </>)
             }
-
         </div>
     );
 }
