@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import './App.css';
 import ItemButtonWithCounter from './components/ItemButtonWithCounter';
 import Total from './components/Total';
 
