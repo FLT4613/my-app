@@ -44,8 +44,8 @@ function App () {
         })
     }, [itemsCount])
 
-    const totalItemsCount = useMemo(() => items.map(v => itemsCount[v.id]).reduce((prev, curr) => prev + curr), [itemsCount])
-    const totalPrice = useMemo(() => items.map(v => v.price * itemsCount[v.id]).reduce((prev, curr) => prev + curr), [itemsCount])
+    const totalItemsCount = items.map(v => itemsCount[v.id]).reduce((prev, curr) => prev + curr)
+    const totalPrice = items.map(v => v.price * itemsCount[v.id]).reduce((prev, curr) => prev + curr)
 
     return (
         <div className="App">
