@@ -1,18 +1,12 @@
-
-import React, { useCallback } from "react"
-import ItemButton from "./ItemButton"
+import React from "react"
 
 type Props = {
-    id: string;
-    name: string;
-    price: number;
-    count: number;
-    setCount?: (x: number) => void;
+    id: string,
+    value: number
 }
 
-const Counter: React.FC<Props> = (props) => {
-    const onClick = useCallback(() => props.setCount && props.setCount(props.count + 1), [props])
-    return <ItemButton {...props} onClick={onClick} />
-}
+const Counter: React.FC<Props> = ({ id, value }) => (
+    <div className="w-6 h-6 text-center rounded-full bg-red-500 text-white" data-testid={`${id}-count`}>{value}</div>
+)
 
 export default Counter
