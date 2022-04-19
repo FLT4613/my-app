@@ -1,6 +1,6 @@
 
 import React, { useCallback } from "react"
-import PurchaseButton from "./PurchaseButton"
+import ItemButton from "./ItemButton"
 
 type Props = {
     id: string;
@@ -12,7 +12,7 @@ type Props = {
 
 const Counter: React.FC<Props> = (props) => {
     const onClick = useCallback(() => props.setCount && props.setCount(props.count + 1), [props])
-    return <PurchaseButton {...props} onClick={onClick} />
+    return <ItemButton {...props} onClick={onClick} />
 }
 
 export default Counter

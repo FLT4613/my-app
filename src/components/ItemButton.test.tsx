@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Button from './PurchaseButton'
+import Button from './ItemButton'
 
 
 test("has id can also use for testing", () => {
