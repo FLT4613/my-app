@@ -49,14 +49,23 @@ function App () {
     const totalPrice = items.map(v => v.price * itemsCount[v.id]).reduce((prev, curr) => prev + curr)
 
     return (
-        <div className="App">
-            <Total numberOfItems={totalItemsCount} price={totalPrice} />
-            {
-                items.map(v => <div className="flex" key={v.id}>
-                    <ItemButtonWithCounter id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />
-                </div>)
-            }
+        <div className="flex h-screen">
+            <div className="flex justify-center items-center m-auto w-[28rem] h-[36rem]">
+                <div className="flex justify-around items-center w-full h-full">
+                    <div className="flex flex-col justify-around align-middle h-1/2 ">
+                        {
+                            items.map(v => (
+                                <ItemButtonWithCounter key={v.id} id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />
+                            ))
+                        }
+                    </div>
+                    <div>
+                        <Total numberOfItems={totalItemsCount} price={totalPrice} />
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 }
 
