@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import './App.css';
 import ItemButtonWithCounter from './components/ItemButtonWithCounter';
+import Total from './components/Total';
 
 type Count = {
     [k: string]: number
@@ -49,8 +50,7 @@ function App () {
 
     return (
         <div className="App">
-            <span data-testid="count">{totalItemsCount}</span>
-            <span data-testid="price">{totalPrice}</span>
+            <Total numberOfItems={totalItemsCount} price={totalPrice} />
             {
                 items.map(v => <div className="flex" key={v.id}>
                     <ItemButtonWithCounter id={v.id} name={v.displayName} price={v.price} setCount={(value: number) => setCount(v.id, value)} count={itemsCount[v.id]} />
